@@ -1,0 +1,1 @@
+This program is an implementation of pancake sort. Pancake sort is a sorting algorithm that flips a disordered stack into order. This program was written to run tests to compare the runtime of pancake sort to different algorithms. It was created in Spring 2021 for Data Structures class. 
