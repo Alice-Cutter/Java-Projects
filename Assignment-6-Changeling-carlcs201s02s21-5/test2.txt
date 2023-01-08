@@ -1,0 +1,73 @@
+aah
+aal
+aas
+gal
+aba
+abo
+aby
+abe
+gel
+tip
+
+import java.util.*;
+import java.io.*;
+public class BFS {
+    
+		static int sameCharNeeded=1;
+		public static boolean higherOrder(String target, String item, int degree){
+		if (target.length() != item.length()){
+			return false; 
+		}
+		int sameChar = 0; 
+		
+			for (int i = 0; i< item.length(); i++){
+                
+			
+        
+
+
+						if (item.charAt(i) == target.charAt(i)){
+						sameChar++;
+					}
+                
+             if (sameChar == target.length()-degree) {
+                  System.out.println("SameChar: " + sameChar); 
+							System.out.println(" NO NEIGHBOR"); 
+              return false;
+				}
+                // else if (item.substring(i, i+1).equals(target.substring(i, i+1))){
+                    
+				
+			}
+			return true; // may need to change 
+		}
+  public static HashSet<String> BFS(Changeling input, String start, String target) {
+        HashSet<String> path = new HashSet<String>();
+        Queue<String> myQueue = new LinkedList<String>();
+        myQueue.add(start); // adding the start word to the queue
+        path.add(start);
+        // varible for figuing out the shortest path
+        if (input.getNeighbors(start) == null){
+            System.out.println("Disconnected Vertex");
+            return null;
+        }
+        String currIndex= myQueue.remove(); 
+        while (!currIndex.equals(target)){
+            // the vertex is visited and now should be removed from the queue because we do not need it anymore. 
+            System.out.println("CURRENT INDEX: "+currIndex);
+            for (String currNeighbor : input.getNeighbors(currIndex)){
+                System.out.println("Current Neighbor: " +currNeighbor);
+                if (higherOrder(currNeighbor, target, sameCharNeeded) == true){
+                    path.add(currIndex);
+                    myQueue.add(currNeighbor);
+                    System.out.println("Added "+ currNeighbor +" to Queue");
+                }
+                
+            }
+            currIndex= myQueue.remove();
+            sameCharNeeded ++;
+        }
+    // Implement me!
+    return path;
+  }
+  }
